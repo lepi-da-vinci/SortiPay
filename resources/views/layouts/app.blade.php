@@ -99,12 +99,17 @@
                             <p class="text-xs text-slate-500 font-mono">{{ $user->member_code }}</p>
                         </div>
                     </div>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="w-full py-2 px-3 rounded-xl text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-rose-50 hover:text-rose-700 transition cursor-pointer">
-                            Keluar Akun
-                        </button>
-                    </form>
+                    <div class="flex flex-col gap-1.5">
+                        <a href="{{ route('account.password.edit') }}" class="w-full py-2 px-3 rounded-xl text-xs font-semibold text-center transition {{ request()->routeIs('account.password.*') ? 'bg-emerald-50 text-emerald-700' : 'text-slate-600 bg-slate-50 hover:bg-emerald-50 hover:text-emerald-700' }}">
+                            Ganti Kata Sandi
+                        </a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="w-full py-2 px-3 rounded-xl text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-rose-50 hover:text-rose-700 transition cursor-pointer">
+                                Keluar Akun
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </aside>
 
@@ -127,6 +132,7 @@
                                 {{ number_format($user->points_balance) }} Poin
                             </span>
                         @endif
+                        <a href="{{ route('account.password.edit') }}" class="text-xs font-semibold text-slate-600 hover:text-emerald-700 px-2 py-1">Sandi</a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit" class="text-xs font-semibold text-slate-500 hover:text-rose-600 px-2 py-1 cursor-pointer">Keluar</button>

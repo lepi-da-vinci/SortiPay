@@ -58,6 +58,22 @@ class UserController extends Controller
         return back()->with('success', "Akun {$user->name} ({$user->role->label()}) berhasil dibuat dengan kode {$user->member_code}.");
     }
 
+    public function resetPassword(Request $request, User $user): RedirectResponse
+    {
+        $validated = $request->validate([
+            'password' => ['required', 'string', 'min:8'],
+        ], [
+            'password.required' => 'Kata sandi baru wajib diisi.',
+            'password.min' => 'Kata sandi baru minimal 8 karakter.',
+        ]);
+
+        $user->update([
+            'password' => Hash::make($validated['password']),
+        ]);
+
+        return back()->with('success', "Kata sandi untuk {$user->name} ({$user->member_code}) berhasil direset.");
+    }
+
     public function auditLogs(Request $request): View
     {
         $typeFilter = $request->query('type');

@@ -63,7 +63,8 @@
                         <th class="py-2.5 pr-4">Nama</th>
                         <th class="py-2.5 pr-4">Email & HP</th>
                         <th class="py-2.5 pr-4">Role</th>
-                        <th class="py-2.5 text-right">Saldo Poin</th>
+                        <th class="py-2.5 pr-4 text-right">Saldo Poin</th>
+                        <th class="py-2.5 text-right">Reset Sandi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100">
@@ -75,7 +76,15 @@
                             <td class="py-3 pr-4">
                                 <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-700">{{ $u->role->label() }}</span>
                             </td>
-                            <td class="py-3 text-right font-extrabold text-amber-600">{{ number_format($u->points_balance) }}</td>
+                            <td class="py-3 pr-4 text-right font-extrabold text-amber-600">{{ number_format($u->points_balance) }}</td>
+                            <td class="py-3 text-right">
+                                <form method="POST" action="{{ route('admin.users.reset-password', $u) }}" class="inline-flex items-center gap-1.5" onsubmit="return confirm('Reset kata sandi untuk {{ $u->name }}?')">
+                                    @csrf
+                                    @method('PUT')
+                                    <input name="password" type="password" required minlength="8" placeholder="Sandi baru (8+)" class="w-32 rounded-lg border border-slate-300 px-2 py-1 text-xs focus:border-emerald-500 outline-none">
+                                    <button type="submit" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-emerald-600 text-white text-xs font-bold cursor-pointer transition">Reset</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

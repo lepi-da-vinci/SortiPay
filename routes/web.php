@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\RewardController;
 use App\Http\Controllers\Admin\UserController;
@@ -29,6 +30,11 @@ Route::middleware('guest')->group(function (): void {
 Route::post('/logout', [AuthController::class, 'logout'])
     ->middleware('auth')
     ->name('logout');
+
+Route::middleware('auth')->group(function (): void {
+    Route::get('/account/password', [AccountController::class, 'edit'])->name('account.password.edit');
+    Route::put('/account/password', [AccountController::class, 'updatePassword'])->name('account.password.update');
+});
 
 // Customer (Nasabah) Portal
 Route::middleware(['auth', 'role:USER'])->group(function (): void {
@@ -66,6 +72,7 @@ Route::middleware(['auth', 'role:ADMIN'])->prefix('admin')->name('admin.')->grou
 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
+    Route::put('/users/{user}/password', [UserController::class, 'resetPassword'])->name('users.reset-password');
 
     Route::get('/audit-logs', [UserController::class, 'auditLogs'])->name('audit-logs.index');
 });

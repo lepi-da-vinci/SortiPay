@@ -15,6 +15,7 @@ use App\Models\User;
 use App\Models\WasteType;
 use App\Services\RedemptionService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class SortiPayFlowTest extends TestCase
@@ -177,5 +178,47 @@ class SortiPayFlowTest extends TestCase
         $this->assertSame(RedemptionStatus::Expired, $redemption->fresh()->status);
         $this->assertSame(500, $customer->fresh()->points_balance);
         $this->assertSame(3, $reward->fresh()->stock);
+    }
+
+    public function test_authenticated_user_can_change_own_password(): void
+    {
+        $customer = User::factory()->create([
+            'role' => UserRole::User,
+            'password' => Hash::make('oldpassword'),
+        ]);
+
+        // Wrong current password should fail
+        $this->actingAs($customer)
+            ->put(route('account.password.update'), [
+                'current_password' => 'wrongpassword',
+                'password' => 'newpassword123',
+                'password_confirmation' => 'newpassword123',
+            ])
+            ->assertSessionHasErrors('current_password');
+
+        // Valid current password should succeed
+        $this->actingAs($customer)
+            ->put(route('account.password.update'), [
+                'current_password' => 'oldpassword',
+                'password' => 'newpassword123',
+                'password_confirmation' => 'newpassword123',
+            ])
+            ->assertSessionHas('success');
+
+        $this->assertTrue(Hash::check('newpassword123', $customer->fresh()->password));
+    }
+
+    public function test_admin_can_reset_user_password(): void
+    {
+        $admin = User::factory()->admin()->create();
+        $customer = User::factory()->create(['role' => UserRole::User]);
+
+        $this->actingAs($admin)
+            ->put(route('admin.users.reset-password', $customer), [
+                'password' => 'resetpass123',
+            ])
+            ->assertSessionHas('success');
+
+        $this->assertTrue(Hash::check('resetpass123', $customer->fresh()->password));
     }
 }
