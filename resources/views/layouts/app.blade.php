@@ -84,18 +84,18 @@
                 </nav>
 
                 <div class="p-4 border-t border-slate-100">
-                    <div class="flex items-center gap-3 mb-3 px-1">
+                    <a href="{{ route('account.edit') }}" class="flex items-center gap-3 mb-3 p-1.5 rounded-xl hover:bg-slate-50 transition group">
                         <div class="w-9 h-9 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-sm shrink-0">
                             {{ strtoupper(substr($user->name, 0, 1)) }}
                         </div>
-                        <div class="min-w-0">
-                            <p class="text-sm font-semibold text-slate-900 truncate">{{ $user->name }}</p>
+                        <div class="min-w-0 flex-1">
+                            <p class="text-sm font-semibold text-slate-900 truncate group-hover:text-emerald-700">{{ $user->name }}</p>
                             <p class="text-xs text-slate-500 font-mono">{{ $user->member_code }}</p>
                         </div>
-                    </div>
+                    </a>
                     <div class="flex flex-col gap-1.5">
-                        <a href="{{ route('account.password.edit') }}" class="w-full py-2 px-3 rounded-xl text-xs font-semibold text-center transition {{ request()->routeIs('account.password.*') ? 'bg-emerald-50 text-emerald-700' : 'text-slate-600 bg-slate-50 hover:bg-emerald-50 hover:text-emerald-700' }}">
-                            Ganti Kata Sandi
+                        <a href="{{ route('account.edit') }}" class="w-full py-2 px-3 rounded-xl text-xs font-semibold text-center transition {{ request()->routeIs('account.*') ? 'bg-emerald-50 text-emerald-700' : 'text-slate-600 bg-slate-50 hover:bg-emerald-50 hover:text-emerald-700' }}">
+                            Detail &amp; Pengaturan Akun
                         </a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -118,7 +118,7 @@
                                 {{ number_format($user->points_balance) }} Poin
                             </span>
                         @endif
-                        <a href="{{ route('account.password.edit') }}" class="text-xs font-semibold text-slate-600 hover:text-emerald-700 px-2 py-1">Sandi</a>
+                        <a href="{{ route('account.edit') }}" class="text-xs font-semibold text-slate-600 hover:text-emerald-700 px-2 py-1">Akun</a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit" class="text-xs font-semibold text-slate-500 hover:text-rose-600 px-2 py-1 cursor-pointer">Keluar</button>

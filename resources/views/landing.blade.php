@@ -18,10 +18,10 @@
     </header>
 
     {{-- Hero Section --}}
-    <section class="relative overflow-hidden py-12 sm:py-20">
+    <section class="relative overflow-hidden py-10 sm:py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-12 gap-10 items-center">
-                <div class="lg:col-span-6 flex flex-col gap-6">
+            <div class="grid md:grid-cols-12 gap-8 lg:gap-10 items-center">
+                <div class="md:col-span-6 flex flex-col gap-5">
                     <span class="inline-flex items-center gap-2 w-fit px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold tracking-wide uppercase shadow-2xs">
                         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                         Pilah Sampah &bull; Raih Poin &bull; Tukar Barang
@@ -42,7 +42,7 @@
                     </div>
 
                     {{-- Quick Category Pills --}}
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2">
+                    <div class="grid grid-cols-2 gap-2.5 pt-1">
                         <div class="flex items-center gap-2 p-2.5 rounded-2xl bg-white/90 border border-slate-200/80 shadow-2xs">
                             <x-waste-icon category="ORGANIK" />
                             <span class="text-xs font-bold text-slate-800">Organik</span>
@@ -63,7 +63,7 @@
                 </div>
 
                 {{-- Hero Visual Card --}}
-                <div class="lg:col-span-6">
+                <div class="md:col-span-6">
                     <div class="relative rounded-3xl overflow-hidden border border-slate-200/90 bg-white shadow-xl shadow-emerald-900/5 p-3">
                         <img src="{{ asset('images/hero-eco-waste.jpg') }}" alt="Ilustrasi Bank Sampah Digital SortiPay" class="w-full h-auto rounded-2xl object-cover">
                         <div class="mt-3 grid grid-cols-3 gap-2.5 text-center">

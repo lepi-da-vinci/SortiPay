@@ -19,7 +19,7 @@
 @endphp
 
 <div {{ $attributes->merge(['class' => 'inline-flex items-center gap-2.5']) }}>
-    <div class="{{ $boxSize }} bg-gradient-to-br from-emerald-500 to-emerald-700 text-white flex items-center justify-center shadow-sm ring-1 ring-emerald-400/30 shrink-0 relative overflow-hidden">
+    <div class="{{ $boxSize }} bg-emerald-600 bg-linear-to-br from-emerald-500 to-emerald-700 text-white flex items-center justify-center shadow-sm ring-1 ring-emerald-400/30 shrink-0 relative overflow-hidden">
         {{-- Custom Recycling Bin + Leaf + Coin SVG Logo --}}
         <svg class="{{ $svgSize }}" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             {{-- Recycling Bin Lid --}}

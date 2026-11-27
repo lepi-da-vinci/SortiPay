@@ -236,6 +236,7 @@ class SortiPayFlowTest extends TestCase
         $this->actingAs($customer)->get(route('customer.catalog-waste'))->assertOk();
         $this->actingAs($customer)->get(route('customer.rewards'))->assertOk();
         $this->actingAs($customer)->get(route('customer.history'))->assertOk();
+        $this->actingAs($customer)->get(route('account.edit'))->assertOk();
         $this->actingAs($customer)->get(route('account.password.edit'))->assertOk();
 
         $this->actingAs($officer)->get(route('officer.deposit.index'))->assertOk();
@@ -246,5 +247,28 @@ class SortiPayFlowTest extends TestCase
         $this->actingAs($admin)->get(route('admin.rewards.index'))->assertOk();
         $this->actingAs($admin)->get(route('admin.users.index'))->assertOk();
         $this->actingAs($admin)->get(route('admin.audit-logs.index'))->assertOk();
+    }
+
+    public function test_authenticated_user_can_update_profile_details(): void
+    {
+        $customer = User::factory()->create([
+            'role' => UserRole::User,
+            'name' => 'Nama Lama',
+        ]);
+
+        $this->actingAs($customer)
+            ->put(route('account.profile.update'), [
+                'name' => 'Nama Baru',
+                'email' => 'baru@sortipay.id',
+                'phone' => '081900001111',
+                'address' => 'Jl. Baru No. 99',
+            ])
+            ->assertSessionHas('success');
+
+        $customer->refresh();
+        $this->assertSame('Nama Baru', $customer->name);
+        $this->assertSame('baru@sortipay.id', $customer->email);
+        $this->assertSame('081900001111', $customer->phone);
+        $this->assertSame('Jl. Baru No. 99', $customer->address);
     }
 }

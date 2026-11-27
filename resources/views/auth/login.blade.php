@@ -8,7 +8,14 @@
     <img src="{{ asset('images/eco-bg-banner.jpg') }}" alt="" class="absolute inset-0 w-full h-full object-cover">
     <div class="absolute inset-0 bg-emerald-950/75 backdrop-blur-[2px]"></div>
 
-    <div class="relative w-full max-w-4xl grid md:grid-cols-12 rounded-3xl overflow-hidden shadow-2xl border border-white/15 bg-white">
+    <div class="relative w-full max-w-md md:max-w-4xl flex flex-col gap-4">
+        <div>
+            <a href="{{ route('landing') }}" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/15 hover:bg-white/25 text-white text-xs font-bold backdrop-blur-xs border border-white/20 transition">
+                &larr; Kembali ke Beranda
+            </a>
+        </div>
+
+        <div class="w-full grid md:grid-cols-12 rounded-3xl overflow-hidden shadow-2xl border border-white/15 bg-white">
         {{-- Left Visual Panel --}}
         <div class="hidden md:flex md:col-span-5 relative flex-col justify-between p-7 text-white overflow-hidden">
             <img src="{{ asset('images/eco-bg-banner.jpg') }}" alt="" class="absolute inset-0 w-full h-full object-cover">
@@ -88,6 +95,7 @@
                     <div class="flex justify-between"><span>Nasabah:</span><span class="text-slate-900">siti@sortipay.id</span></div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 </div>

@@ -4,9 +4,14 @@
 
 @section('content')
 <div class="flex flex-col gap-6">
-    <div>
-        <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight">Manajemen Pengguna & Petugas</h1>
-        <p class="text-sm text-slate-600">Tambahkan akun Petugas Posko, Admin, atau Nasabah baru dan pantau saldo poin.</p>
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+            <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight">Manajemen Pengguna &amp; Petugas</h1>
+            <p class="text-sm text-slate-600">Tambahkan akun Petugas Posko, Admin, atau Nasabah baru dan pantau saldo poin.</p>
+        </div>
+        <a href="{{ route('admin.dashboard') }}" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs font-bold text-slate-700 shadow-2xs transition w-fit">
+            &larr; Kembali ke Dashboard
+        </a>
     </div>
 
     {{-- Create User Form --}}

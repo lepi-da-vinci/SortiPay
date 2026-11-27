@@ -4,9 +4,14 @@
 
 @section('content')
 <div class="flex flex-col gap-6">
-    <div>
-        <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight">Master Jenis Sampah & Tarif Poin</h1>
-        <p class="text-sm text-slate-600">Kelola kategori, satuan, dan tarif poin. Perubahan tarif tidak mengubah histori poin lama (snapshot).</p>
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+            <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight">Master Jenis Sampah &amp; Tarif Poin</h1>
+            <p class="text-sm text-slate-600">Kelola kategori, satuan, dan tarif poin. Perubahan tarif tidak mengubah histori poin lama (snapshot).</p>
+        </div>
+        <a href="{{ route('admin.dashboard') }}" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs font-bold text-slate-700 shadow-2xs transition w-fit">
+            &larr; Kembali ke Dashboard
+        </a>
     </div>
 
     {{-- Create Form --}}

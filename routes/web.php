@@ -32,6 +32,8 @@ Route::post('/logout', [AuthController::class, 'logout'])
     ->name('logout');
 
 Route::middleware('auth')->group(function (): void {
+    Route::get('/account', [AccountController::class, 'edit'])->name('account.edit');
+    Route::put('/account/profile', [AccountController::class, 'updateProfile'])->name('account.profile.update');
     Route::get('/account/password', [AccountController::class, 'edit'])->name('account.password.edit');
     Route::put('/account/password', [AccountController::class, 'updatePassword'])->name('account.password.update');
 });
