@@ -9,7 +9,7 @@
     <link href="https://fonts.bunny.net/css?family=plus-jakarta-sans:400,500,600,700,800" rel="stylesheet" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-slate-50 text-slate-900 antialiased min-h-screen flex flex-col">
+<body class="bg-eco-pattern text-slate-900 antialiased min-h-screen flex flex-col">
     @auth
         @php
             $user = auth()->user();
@@ -19,14 +19,8 @@
         <div class="min-h-screen flex flex-col lg:flex-row">
             {{-- Desktop Sidebar --}}
             <aside class="no-print hidden lg:flex lg:flex-col lg:w-64 lg:fixed lg:inset-y-0 bg-white border-r border-slate-200 z-30">
-                <div class="h-16 flex items-center gap-3 px-6 border-b border-slate-100">
-                    <div class="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-extrabold text-lg shadow-sm">
-                        S
-                    </div>
-                    <div>
-                        <span class="font-bold text-slate-900 tracking-tight text-lg block leading-none">SortiPay</span>
-                        <span class="text-xs text-emerald-600 font-medium">{{ $role->label() }}</span>
-                    </div>
+                <div class="h-16 flex items-center px-5 border-b border-slate-100">
+                    <x-brand-logo :subtitle="$role->label()" />
                 </div>
 
                 <nav class="flex-1 px-3 py-5 flex flex-col gap-1 overflow-y-auto">
@@ -117,15 +111,7 @@
             <div class="flex-1 lg:pl-64 flex flex-col min-h-screen pb-20 lg:pb-0">
                 {{-- Mobile Top Bar --}}
                 <header class="no-print lg:hidden sticky top-0 z-20 bg-white/95 backdrop-blur border-b border-slate-200 px-4 h-14 flex items-center justify-between">
-                    <div class="flex items-center gap-2.5">
-                        <div class="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-extrabold text-sm">
-                            S
-                        </div>
-                        <div>
-                            <span class="font-bold text-slate-900 text-sm block leading-none">SortiPay</span>
-                            <span class="text-[11px] text-emerald-600 font-medium">{{ $role->label() }}</span>
-                        </div>
-                    </div>
+                    <x-brand-logo size="sm" :subtitle="$role->label()" />
                     <div class="flex items-center gap-2">
                         @if ($user->isCustomer())
                             <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-700 text-xs font-bold">

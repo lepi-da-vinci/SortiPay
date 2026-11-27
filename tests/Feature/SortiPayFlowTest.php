@@ -221,4 +221,30 @@ class SortiPayFlowTest extends TestCase
 
         $this->assertTrue(Hash::check('resetpass123', $customer->fresh()->password));
     }
+
+    public function test_all_role_pages_render_without_errors(): void
+    {
+        $admin = User::factory()->admin()->create();
+        $officer = User::factory()->officer()->create();
+        $customer = User::factory()->create(['role' => UserRole::User]);
+
+        $this->get(route('landing'))->assertOk();
+        $this->get(route('login'))->assertOk();
+        $this->get(route('register'))->assertOk();
+
+        $this->actingAs($customer)->get(route('customer.dashboard'))->assertOk();
+        $this->actingAs($customer)->get(route('customer.catalog-waste'))->assertOk();
+        $this->actingAs($customer)->get(route('customer.rewards'))->assertOk();
+        $this->actingAs($customer)->get(route('customer.history'))->assertOk();
+        $this->actingAs($customer)->get(route('account.password.edit'))->assertOk();
+
+        $this->actingAs($officer)->get(route('officer.deposit.index'))->assertOk();
+        $this->actingAs($officer)->get(route('officer.redemptions.index'))->assertOk();
+
+        $this->actingAs($admin)->get(route('admin.dashboard'))->assertOk();
+        $this->actingAs($admin)->get(route('admin.waste-types.index'))->assertOk();
+        $this->actingAs($admin)->get(route('admin.rewards.index'))->assertOk();
+        $this->actingAs($admin)->get(route('admin.users.index'))->assertOk();
+        $this->actingAs($admin)->get(route('admin.audit-logs.index'))->assertOk();
+    }
 }

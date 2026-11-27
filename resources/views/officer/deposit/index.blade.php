@@ -171,13 +171,7 @@
 @push('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    const wasteTypes = @json($wasteTypes->map(fn ($w) => [
-        'id' => $w->id,
-        'name' => $w->name,
-        'category' => $w->category->label(),
-        'unit' => $w->unit->value,
-        'points_per_unit' => $w->points_per_unit,
-    ])->values());
+    const wasteTypes = @json($wasteTypesJson);
 
     const searchInput = document.getElementById('customer-search');
     const resultsContainer = document.getElementById('customer-results');

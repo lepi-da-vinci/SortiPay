@@ -13,7 +13,9 @@
 
     <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-xs">
         <div class="text-center pb-5 border-b border-dashed border-slate-200">
-            <div class="w-11 h-11 rounded-2xl bg-emerald-600 text-white font-extrabold text-xl flex items-center justify-center mx-auto mb-2">S</div>
+            <div class="flex justify-center mb-2">
+                <x-brand-logo :show-text="false" size="lg" />
+            </div>
             <h1 class="text-xl font-extrabold text-slate-900">Struk Setoran Sampah</h1>
             <p class="text-xs text-slate-500 mt-0.5">Bank Sampah Digital SortiPay</p>
             <p class="mt-2 inline-block px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 font-mono text-xs font-bold border border-emerald-200">

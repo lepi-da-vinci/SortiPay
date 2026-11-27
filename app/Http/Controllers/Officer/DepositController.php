@@ -39,8 +39,17 @@ class DepositController extends Controller
             ->limit(8)
             ->get();
 
+        $wasteTypesJson = $wasteTypes->map(fn (WasteType $w): array => [
+            'id' => $w->id,
+            'name' => $w->name,
+            'category' => $w->category->label(),
+            'unit' => $w->unit->value,
+            'points_per_unit' => $w->points_per_unit,
+        ])->values()->all();
+
         return view('officer.deposit.index', [
             'wasteTypes' => $wasteTypes,
+            'wasteTypesJson' => $wasteTypesJson,
             'customers' => $customers,
             'recentDeposits' => $recentDeposits,
         ]);

@@ -3,17 +3,20 @@
 @section('title', 'Daftar Nasabah — SortiPay')
 
 @section('content')
-<div class="min-h-screen flex items-center justify-center px-4 py-12 bg-slate-50">
-    <div class="w-full max-w-md flex flex-col gap-6">
+<div class="min-h-screen relative flex items-center justify-center px-4 py-12 overflow-hidden">
+    {{-- Eco Waste Atmospheric Background --}}
+    <img src="{{ asset('images/eco-bg-banner.jpg') }}" alt="" class="absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0 bg-emerald-950/75 backdrop-blur-[2px]"></div>
+
+    <div class="relative w-full max-w-md flex flex-col gap-5">
         <div class="text-center">
-            <a href="{{ route('landing') }}" class="inline-flex items-center gap-2.5 justify-center">
-                <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-extrabold text-xl shadow-sm">S</div>
-                <span class="font-extrabold text-2xl tracking-tight text-slate-900">Sorti<span class="text-emerald-600">Pay</span></span>
+            <a href="{{ route('landing') }}" class="inline-block">
+                <x-brand-logo :dark="true" size="lg" subtitle="Bank Sampah Digital" />
             </a>
-            <p class="text-sm text-slate-600 mt-2">Buat akun Nasabah dan dapatkan QR Member Code otomatis</p>
+            <p class="text-xs text-emerald-100 mt-2">Buat akun Nasabah &amp; dapatkan QR Member Code otomatis</p>
         </div>
 
-        <div class="bg-white rounded-3xl border border-slate-200 shadow-xs p-6 sm:p-8">
+        <div class="bg-white rounded-3xl border border-white/20 shadow-2xl p-6 sm:p-8">
             @if ($errors->any())
                 <div class="mb-4 rounded-xl bg-rose-50 border border-rose-200 px-4 py-3 text-xs text-rose-700">
                     <ul class="list-disc list-inside space-y-0.5">
@@ -66,14 +69,14 @@
                     </div>
                 </div>
 
-                <button type="submit" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm shadow-xs transition cursor-pointer">
-                    Daftar & Buat QR Member
+                <button type="submit" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-sm transition cursor-pointer">
+                    Daftar &amp; Buat QR Member
                 </button>
             </form>
 
             <p class="mt-5 text-center text-xs text-slate-600">
                 Sudah punya akun?
-                <a href="{{ route('login') }}" class="font-semibold text-emerald-600 hover:text-emerald-700">Masuk di sini</a>
+                <a href="{{ route('login') }}" class="font-bold text-emerald-600 hover:text-emerald-700">Masuk di sini</a>
             </p>
         </div>
     </div>

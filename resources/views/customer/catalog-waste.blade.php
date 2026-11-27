@@ -26,15 +26,18 @@
     {{-- Waste Cards Grid --}}
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         @forelse ($wasteTypes as $waste)
-            <div class="bg-white rounded-3xl border border-slate-200 p-5 shadow-xs flex flex-col justify-between gap-4">
+            <div class="bg-white rounded-3xl border border-slate-200 p-5 shadow-xs hover:shadow-md hover:border-emerald-200 transition flex flex-col justify-between gap-4">
                 <div>
-                    <div class="flex items-center justify-between gap-2">
-                        <span class="px-2.5 py-1 rounded-full text-[11px] font-bold border {{ $waste->category->badgeClasses() }}">
-                            {{ $waste->category->label() }}
-                        </span>
-                        @if ($waste->is_recyclable)
-                            <span class="text-[11px] font-semibold text-emerald-700">Daur Ulang</span>
-                        @endif
+                    <div class="flex items-start justify-between gap-3">
+                        <x-waste-icon :category="$waste->category" />
+                        <div class="flex flex-col items-end gap-1">
+                            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold border {{ $waste->category->badgeClasses() }}">
+                                {{ $waste->category->label() }}
+                            </span>
+                            @if ($waste->is_recyclable)
+                                <span class="text-[11px] font-semibold text-emerald-700">&#9851; Daur Ulang</span>
+                            @endif
+                        </div>
                     </div>
                     <h2 class="text-base font-bold text-slate-900 mt-3">{{ $waste->name }}</h2>
                     <p class="text-xs text-slate-600 mt-1 leading-relaxed">{{ $waste->description ?? 'Pastikan sampah dalam kondisi terpilah saat disetor.' }}</p>

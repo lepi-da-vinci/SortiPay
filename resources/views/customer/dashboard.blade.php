@@ -12,8 +12,10 @@
     {{-- Top Cards: Balance + QR Member --}}
     <div class="grid lg:grid-cols-3 gap-6">
         {{-- Points Balance & Stats --}}
-        <div class="lg:col-span-2 bg-gradient-to-br from-emerald-600 to-emerald-800 text-white rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col justify-between gap-6">
-            <div class="flex items-start justify-between gap-4">
+        <div class="lg:col-span-2 relative overflow-hidden text-white rounded-3xl p-6 sm:p-8 shadow-md flex flex-col justify-between gap-6">
+            <img src="{{ asset('images/eco-bg-banner.jpg') }}" alt="" class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-br from-emerald-900/90 via-emerald-800/80 to-emerald-700/80"></div>
+            <div class="relative flex items-start justify-between gap-4">
                 <div>
                     <p class="text-xs font-semibold uppercase tracking-wider text-emerald-100">Saldo Poin Tersedia</p>
                     <p class="text-4xl sm:text-5xl font-extrabold tracking-tight mt-2">
@@ -21,21 +23,21 @@
                         <span class="text-lg font-bold text-amber-300">Poin</span>
                     </p>
                 </div>
-                <a href="{{ route('customer.rewards') }}" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs shadow-xs transition shrink-0">
+                <a href="{{ route('customer.rewards') }}" class="px-4 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-xs shadow-sm transition shrink-0">
                     Tukar Barang &rarr;
                 </a>
             </div>
 
-            <div class="grid grid-cols-3 gap-3 pt-4 border-t border-white/15">
-                <div class="rounded-2xl bg-white/10 p-3.5">
+            <div class="relative grid grid-cols-3 gap-3 pt-4 border-t border-white/15">
+                <div class="rounded-2xl bg-white/15 backdrop-blur-xs p-3.5">
                     <p class="text-[11px] text-emerald-100">Total Sampah</p>
                     <p class="text-lg font-extrabold mt-0.5">{{ number_format($totalWeightKg, 2) }} kg</p>
                 </div>
-                <div class="rounded-2xl bg-white/10 p-3.5">
+                <div class="rounded-2xl bg-white/15 backdrop-blur-xs p-3.5">
                     <p class="text-[11px] text-emerald-100">Setoran</p>
                     <p class="text-lg font-extrabold mt-0.5">{{ $totalDepositsCount }} kali</p>
                 </div>
-                <div class="rounded-2xl bg-white/10 p-3.5">
+                <div class="rounded-2xl bg-white/15 backdrop-blur-xs p-3.5">
                     <p class="text-[11px] text-emerald-100">Est. CO&#8322; Dicegah</p>
                     <p class="text-lg font-extrabold mt-0.5">{{ number_format($estimatedCo2SavedKg, 1) }} kg</p>
                 </div>
